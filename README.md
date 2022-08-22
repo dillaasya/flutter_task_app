@@ -2,10 +2,11 @@
 
 Tools for writing simple notes.
 
+Users can add new notes, mark notes as complete, mark notes, change notes that have been created, delete notes so that they go into the Recycle Bin, and restore notes or permanently delete them.
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-The project uses the latest version of the BLoC state management which is version 8.0.0.
+This project uses the latest version of BLoC state management which is version 8.0.0. and using local storage.
 
 Important dependencies used in project creation are:
 
