@@ -1,16 +1,18 @@
 # flutter_task_app
 
-A new Flutter project.
+Tools for writing simple notes.
+
+Users can add new notes, mark notes as complete, mark notes, change notes that have been created, delete notes so that they go into the Recycle Bin, and restore notes or permanently delete them.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project uses the latest version of BLoC state management which is version 8.0.0. and using local storage.
 
-A few resources to get you started if this is your first Flutter project:
+Important dependencies used in project creation are:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+- [bloc](https://pub.dev/packages/bloc)
+- [equatable](https://pub.dev/packages/equatable)
+- [hydrated_bloc](https://pub.dev/packages/hydrated_bloc)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To find out more information about each library, you can click the link or [visit this website](https://pub.dev/)
