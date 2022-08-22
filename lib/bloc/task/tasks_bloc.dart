@@ -13,6 +13,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     on<RemoveTask>(_onRemoveTask);
     on<MarkFavoriteOrNot>(_onFavoriteTask);
     on<RestoreTask>(_onRestoreTask);
+    on<DeleteAllTask>(_onDeleteAllTask);
   }
 
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {
@@ -43,9 +44,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         var index = favoritedTask.indexOf(task);
         pendingTask = List.from(pendingTask)..remove(task);
         completedTask.insert(0, task.copyWith(isDone: true));
-        // favoritedTask = List.from(favoritedTask)
-        //   ..remove(task)
-        //   ..insert(index, task.copyWith(isDone: true));
+        favoritedTask = List.from(favoritedTask)
+          ..remove(task)
+          ..insert(index, task.copyWith(isDone: true));
       }
     } else {
       if (task.isFavorite == false) {
@@ -57,8 +58,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         completedTask = List.from(completedTask)..remove(task);
         pendingTask = List.from(pendingTask)
           ..insert(0, task.copyWith(isDone: false));
-        // favoritedTask..remove(task)
-        //   ..insert(index, task.copyWith(isDone: false));
+        favoritedTask = List.from(favoritedTask)
+          ..remove(task)
+          ..insert(index, task.copyWith(isDone: false));
       }
     }
 
@@ -153,6 +155,16 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       completedTask: List.from(state.completedTask)..remove(event.task),
       favoritedTask: List.from(state.favoritedTask)..remove(event.task),
       removedTask: List.from(state.removedTask)..remove(event.task),
+    ));
+  }
+
+  void _onDeleteAllTask(DeleteAllTask event, Emitter<TasksState> emit) {
+    final state = this.state;
+    emit(TasksState(
+      removedTask: List.from(state.removedTask)..clear(),
+      pendingTask: state.pendingTask,
+      completedTask: state.completedTask,
+      favoritedTask: state.favoritedTask,
     ));
   }
 }

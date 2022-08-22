@@ -17,12 +17,27 @@ class RecycleBinScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Recycle Bin'),
+            actions: [
+              PopupMenuButton(
+                itemBuilder: (context) => [
+                      PopupMenuItem(
+                          child: TextButton.icon(
+                            onPressed: null,
+                            icon: const Icon(Icons.delete_outline),
+                            label: const Text('Delete All Task'),
+                          ),
+                          onTap: () =>
+                              context.read<TasksBloc>().add(DeleteAllTask())),
+                    ]),
+            ],
           ),
           drawer: const DrawerScreen(),
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Center(child: Chip(label: Text('${state.removedTask.length} Tasks'))),
+                Center(
+                    child:
+                        Chip(label: Text('${state.removedTask.length} Tasks'))),
                 TaskList(taskList: state.removedTask)
               ],
             ),
